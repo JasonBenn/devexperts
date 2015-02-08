@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  padding-top: 70px;
+}
+
 header {
   * {
     display: inline-block;
@@ -53,8 +57,44 @@ header {
   padding: 0 20px;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .query {
   width: 100%;
   padding: 20px;
   font-size: 24px;
+}
+
+.results {
+  display: flex;
+  align-content: center;
+  flex-flow: row wrap;
+  padding-left: 0;
+
+  li {
+    list-style: none;
+    width: 356px;
+    padding: 10px;
+    margin: 10px;
+    border: 8px solid;
+  }
+
+  h1 {
+    vertical-align: top;
+    word-wrap: break-word;
+    width: 200px;
+  }
+
+  img {
+    border: 3px solid aqua;
+    width: 134px;
+  }
+
+  img, h1 {
+    display: inline-block;
+  }
 }

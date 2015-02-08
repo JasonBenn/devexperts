@@ -3,7 +3,7 @@ var MainView = Backbone.View.extend({
     this.$results = this.$('.results');
     var channel = pusher.subscribe('twitter_handles');
     channel.bind('result', function(data) {
-      var twitterHandle = data.twitter || 'Not found.'
+      var twitterHandle = data.twitter;
       this.collection.findWhere({display_name: data.name}).set({ twitterHandle: twitterHandle })
     }.bind(this));
   },
@@ -24,7 +24,7 @@ var MainView = Backbone.View.extend({
 
       this.collection.each(function(model) {
 
-        var view = new ResultView({ 
+        var view = new ResultView({
           model: model,
           template: _.template(this.$('#result-template').html())
         });
@@ -48,12 +48,13 @@ var ResultView = Backbone.View.extend({
   },
 
   updateTwitterHandle: function(model, twitterHandle) {
-    this.$('.twitter-handle').text(twitterHandle);
+    var html = twitterHandle ? '<a href="' + 'https://twitter.com/' + twitterHandle + '">' + '@' + twitterHandle : 'Not Found.'
+    this.$('.twitter-handle').html(html);
   },
 
   render: function() {
     var data = this.model.toJSON();
-    this.$el.html(this.template(data));
+    this.setElement(this.template(data));
     return this;
   }
 })
