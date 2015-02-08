@@ -3,7 +3,8 @@ var MainView = Backbone.View.extend({
     this.$results = this.$('.results');
     var channel = pusher.subscribe('twitter_handles');
     channel.bind('result', function(data) {
-      this.collection.findWhere({display_name: data.name}).set({ twitterHandle: data.name })
+      var twitterHandle = data.twitter || 'Not found.'
+      this.collection.findWhere({display_name: data.name}).set({ twitterHandle: twitterHandle })
     }.bind(this));
   },
 

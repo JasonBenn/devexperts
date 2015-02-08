@@ -1,13 +1,17 @@
 class FindTwitterHandleJob < ActiveJob::Base
   queue_as :default
 
-  def perform(name)
-    Pusher.trigger('twitter_handles', 'result', { name: name, twitter: 'samsamskies' })
-    # background job:
-      # search_twitter(name)
-        # IF result:
-          # Pusher.trigger('twitter_handles', 'result', { name: name, twitter: 'samsamskies' })
-        # ELSE
-          # Pusher.trigger('twitter_handles', 'result', { name: name, twitter: '' })
+  def perform(options)
+    name = options[:name]
+    query = options[:query]
+    page = Google::Search::Web.new { |search| search.query = "site:twitter.com #{name} #{query}" }.first
+
+    handle = page ? parse(page.uri) : nil
+    Pusher.trigger('twitter_handles', 'result', { name: name, twitter: handle })
+  end
+
+  TWITTER_HANDLE_REGEX = /twitter.com\/([\w\d]+)/
+  def parse(page_uri)
+    page_uri.match(TWITTER_HANDLE_REGEX)[1]
   end
 end
