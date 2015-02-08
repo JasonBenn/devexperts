@@ -7,7 +7,7 @@
 
 2. Run the app
   ```
-  foreman start -p 3000
+  foreman start -p 3000 -f Procfile.dev
   ```
 
 
