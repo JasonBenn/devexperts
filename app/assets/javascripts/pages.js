@@ -3,8 +3,8 @@ var MainView = Backbone.View.extend({
     this.$results = this.$('.results');
     var channel = pusher.subscribe('twitter_handles');
     channel.bind('result', function(data) {
-      console.log('An event was triggered with message: ' + JSON.stringify(data));
-    });
+      this.collection.findWhere({display_name: data.name}).set({ twitterHandle: data.name })
+    }.bind(this));
   },
 
   el: 'body',
@@ -16,33 +16,38 @@ var MainView = Backbone.View.extend({
   search: function(e) {
     e.preventDefault();
     var query = this.$('.query').val();
-    $.get('/search', {query: query}, function(data) {
+    $.get('/search', {query: query}, function(users) {
       this.$results.empty()
 
-      data.items.forEach(function(result) {
-        var model = new ResultModel(result);
+      this.collection = new ResultsCollection(users);
+
+      this.collection.each(function(model) {
 
         var view = new ResultView({ 
           model: model,
           template: _.template(this.$('#result-template').html())
         });
 
-
-        // listen to pusher somehow
         this.$results.append(view.render().el);
       }, this)
-
-      // find twitter handles for each user.
-      // listen for pusher events, update appropriate entry when you find one.
     }.bind(this))
   }
 })
 
 var ResultModel = Backbone.Model.extend({});
 
+var ResultsCollection = Backbone.Collection.extend({
+  model: ResultModel
+})
+
 var ResultView = Backbone.View.extend({
   initialize: function(options) {
     this.template = options.template;
+    this.listenTo(this.model, 'change:twitterHandle', this.updateTwitterHandle);
+  },
+
+  updateTwitterHandle: function(model, twitterHandle) {
+    this.$('.twitter-handle').text(twitterHandle);
   },
 
   render: function() {

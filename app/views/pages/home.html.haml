@@ -9,13 +9,14 @@
 
 %script#result-template{type: 'text/template'}
   %li
-    %a(href="{{=user.link}}")
-      %img(src="{{=user.profile_image}}")
-    %a(href="{{=user.link}}")
-      {{=user.display_name}}
+    %a(href="{{=link}}")
+      %img(src="{{=profile_image}}")
+    %a(href="{{=link}}")
+      {{=display_name}}
     %p "Post Count (?)": {{=post_count}}
     %p User's Relevance: {{=score}}
-    %p Total reputation: {{=user.reputation}}
+    %p Total reputation: {{=reputation}}
     %p 
-      %span Twitter handle: 
-      .fa.fa-spinner.fa-spin
+      %span Twitter handle:
+      .twitter-handle
+        .handle.fa.fa-spinner.fa-spin
