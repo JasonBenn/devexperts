@@ -1,4 +1,8 @@
 var MainView = Backbone.View.extend({
+  initialize: function() {
+    this.$results = this.$('.results');
+  },
+
   el: 'body',
 
   events: {
@@ -8,8 +12,9 @@ var MainView = Backbone.View.extend({
   search: function(e) {
     e.preventDefault();
     var query = this.$('.query').val();
-    this.$('.query').val('');
     $.get('/search', {query: query}, function(data) {
+      this.$results.empty()
+
       data.items.forEach(function(result) {
         var model = new ResultModel(result);
 
@@ -18,9 +23,9 @@ var MainView = Backbone.View.extend({
           template: _.template(this.$('#result-template').html())
         });
 
-        this.$('.results').append(view.render().el);
-      })
-    })
+        this.$results.append(view.render().el);
+      }, this)
+    }.bind(this))
   }
 })
 
