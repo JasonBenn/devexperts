@@ -9,8 +9,8 @@
 
 %script#result-template{type: 'text/template'}
   %li
-    %p {{=user.reputation}}
-    %img(src="{{=user.profile_image}}")
+    %a(href="{{=user.link}}")
+      %img(src="{{=user.profile_image}}")
     %a(href="{{=user.link}}")
       {{=user.display_name}}
     %p "Post Count (?)": {{=post_count}}

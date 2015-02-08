@@ -25,6 +25,9 @@ var MainView = Backbone.View.extend({
 
         this.$results.append(view.render().el);
       }, this)
+
+      // find twitter handles for each user.
+      // listen for pusher events, update appropriate entry when you find one.
     }.bind(this))
   }
 })
