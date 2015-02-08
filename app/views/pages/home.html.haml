@@ -1,11 +1,14 @@
-%h1 Devexperts
-%p Look up the best developers by StackOverflow prowess and find their Twitter.
+.container.blue-background
+  %header
+    %h1.brand DevExperts
+    %p Look up the best developers by StackOverflow prowess and find their Twitter.
 
-%form#search
-  %input.query{placeholder: 'keyword'}
-  .button
+  %form#search
+    %input.query{placeholder: 'keyword e.g. javascript', autofocus: 'autofocus', required: 'required'}
+    %button{type: 'submit'}
 
-%ul.results
+.container
+  %ul.results
 
 %script#result-template{type: 'text/template'}
   %li
@@ -16,7 +19,7 @@
     %p "Post Count (?)": {{=post_count}}
     %p User's Relevance: {{=score}}
     %p Total reputation: {{=reputation}}
-    %p 
+    %p
       %span Twitter handle:
       .twitter-handle
         .handle.fa.fa-spinner.fa-spin

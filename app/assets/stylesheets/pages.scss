@@ -1,3 +1,60 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+header {
+  * {
+    display: inline-block;
+  }
+
+  p {
+    color: azure;
+  }
+}
+
+#search {
+  position: fixed;
+  right: 0;
+  top: 8px;
+  width: 440px;
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: aqua;
+    height: 100%;
+    width: 80px;
+    border: none;
+
+    &:before {
+      font-family: FontAwesome;
+      font-size: 32px;
+      content: "\f002";
+    }
+  }
+
+  input {
+    outline: 0;
+    height: 14px;
+  }
+}
+
+.blue-background {
+  background: #0099CC;
+}
+
+.brand {
+  color: antiquewhite;
+  margin-right: 20px;
+}
+
+.container {
+  padding: 0 20px;
+}
+
+.query {
+  width: 100%;
+  padding: 20px;
+  font-size: 24px;
+}
