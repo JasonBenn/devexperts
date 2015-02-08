@@ -5,7 +5,14 @@
   %input.query{placeholder: 'keyword'}
   .button
 
-.results
+%ul.results
 
 %script#result-template{type: 'text/template'}
-  <h1>Reputation: <%= user.reputation %></h1>
+  %li
+    %p {{=user.reputation}}
+    %img(src="{{=user.profile_image}}")
+    %a(href="{{=user.link}}")
+      {{=user.display_name}}
+    %p "Post Count (?)": {{=post_count}}
+    %p User's Relevance: {{=score}}
+    %p Total reputation: {{=user.reputation}}
