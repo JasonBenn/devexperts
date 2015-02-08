@@ -1,8 +1,14 @@
-Startup:
+# Getting Started:
 
-redis-server /usr/local/etc/redis.conf (brew install redis if you haven't)
-bundle exec sidekiq
-rails s
+1. Install redis if you don't have it
+  ```
+  brew install redis
+  ```
+
+2. Run the app
+  ```
+  foreman start -p 3000
+  ```
 
 
 
@@ -11,11 +17,9 @@ Robert Half:
 OMG how will I ever update this Objective CAML project that I inherited after the previous maintainer retired? Boss is on me to get it fixed as its business critical. Can you develop a program to evaluate postings and commentary on sites like GitHub, StackOverflow, and ExpertsExchange to find the most knowledgeable, influential, and helpful experts for a particular technology? Entries will be judged on ability to discriminate different types of expertise as well as communications skills. The winning team will be awarded a cash prize of $1500
 
 
-
 Pusher API:
 
 Integrate cool realtime features into your app via Pusher API and win a prize from Pusher! The $500 amazon gift card will be awarded to the team with the most creative implementation of Pusher API.
-
 
 
 HP Helion Development Platform Challenge
