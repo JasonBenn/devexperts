@@ -1,6 +1,11 @@
 %h1 Devexperts
 %p Look up the best developers by StackOverflow prowess and find their Twitter.
 
-%form
-  %input{placeholder: 'keyword'}
+%form#search
+  %input.query{placeholder: 'keyword'}
   .button
+
+.results
+
+%script#result-template{type: 'text/template'}
+  <h1>Reputation: <%= user.reputation %></h1>

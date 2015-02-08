@@ -3,6 +3,8 @@ class PagesController < ApplicationController
   end
 
   def search
+    query = params['query']
+    # send query to stackoverflow...
     render json: %q(
     { "items":[
       {
