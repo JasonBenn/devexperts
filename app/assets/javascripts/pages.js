@@ -1,6 +1,10 @@
 var MainView = Backbone.View.extend({
   initialize: function() {
     this.$results = this.$('.results');
+    var channel = pusher.subscribe('twitter_handles');
+    channel.bind('result', function(data) {
+      alert('An event was triggered with message: ' + JSON.stringify(data));
+    });
   },
 
   el: 'body',
@@ -22,6 +26,8 @@ var MainView = Backbone.View.extend({
           model: model,
           template: _.template(this.$('#result-template').html())
         });
+
+        // listen to pusher somehow
 
         this.$results.append(view.render().el);
       }, this)
