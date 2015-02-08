@@ -17,6 +17,7 @@ module Devexperts
     # config.time_zone = 'Central Time (US & Canada)'
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+    config.active_job.queue_adapter = :sidekiq
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
