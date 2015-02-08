@@ -1,0 +1,20 @@
+{
+  "name": "devexperts",
+  "version": "0.0.0",
+  "homepage": "https://github.com/JasonBenn/devexperts",
+  "authors": [
+    "Jason Benn <jasoncbenn@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.2"
+  }
+}
