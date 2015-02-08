@@ -6,7 +6,7 @@ class FindTwitterHandleJob < ActiveJob::Base
       name = options[:name]
       query = options[:query]
       page = Google::Search::Web.new { |search| search.query = "site:twitter.com #{name} #{query}" }.first
-      handle = parse(page.uri) if page
+      handle = page ? parse(page.uri) : nil
     rescue StandardError => e
       Rails.logger.error("ERROR RUNNING JOB: #{e}")
     ensure
