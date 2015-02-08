@@ -1,6 +1,7 @@
 var MainView = Backbone.View.extend({
   initialize: function() {
     this.$results = this.$('.results');
+    this.$notice = this.$('#notice');
     var channel = pusher.subscribe('twitter_handles');
     channel.bind('result', function(data) {
       var twitterHandle = data.twitter;
@@ -19,19 +20,24 @@ var MainView = Backbone.View.extend({
     var query = this.$('.query').val();
     $.get('/search', {query: query}, function(users) {
       this.$results.empty()
-
-      this.collection = new ResultsCollection(users);
-
-      this.collection.each(function(model) {
-
-        var view = new ResultView({
-          model: model,
-          template: _.template(this.$('#result-template').html())
-        });
-
-        this.$results.append(view.render().el);
-      }, this)
+      this.$notice.empty()
+      if (users.length) { this.renderResultViews(users) }
+      else { this.$notice.html('<h1>No results found.</h1>')}
     }.bind(this))
+  },
+
+  renderResultViews: function(users) {
+    this.collection = new ResultsCollection(users);
+
+    this.collection.each(function(model) {
+
+      var view = new ResultView({
+        model: model,
+        template: _.template(this.$('#result-template').html())
+      });
+
+      this.$results.append(view.render().el);
+    }, this)
   }
 })
 
