@@ -14,20 +14,23 @@
 
 %script#result-template{type: 'text/template'}
   %li
-    %a(href="{{=link}}")
-      %img(src="{{=profile_image}}")
-    %h1 {{=display_name}}
+    ! <a href="<%= link %>"><img src="<%= profile_image %>"></a>
+    %h1 <%= display_name %>
     %p
       %strong
         User's Relevance:
-      {{=score}}
+      <%= score %>
     %p
       %strong
         Total reputation:
-      {{=reputation}}
+      <%= reputation %>
     %span
       %strong
         Twitter:
     %span.twitter-handle
+      <% if (twitter_handle) {  %>
+      <a href="https://twitter.com/<%=twitter_handle%>">@<%= twitter_handle  %></a>
+      <% } else { %>
       Searching...
       %i.fa.fa-spinner.fa-spin
+      <% } %>

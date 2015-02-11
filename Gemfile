@@ -41,6 +41,7 @@ gem 'google-search'
 gem 'foreman'
 gem 'puma'
 gem 'autoprefixer-rails'
+gem 'haml-underscore-template'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

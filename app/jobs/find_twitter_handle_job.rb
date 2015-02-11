@@ -2,15 +2,20 @@ class FindTwitterHandleJob < ActiveJob::Base
   queue_as :default
 
   def perform(options)
+    developer = options[:developer]
+    query = options[:query]
+    name = developer.stack_overflow_display_name
+
+    return if developer.twitter_handle
+
     begin
-      name = options[:name]
-      query = options[:query]
       page = Google::Search::Web.new { |search| search.query = "site:twitter.com #{name} #{query}" }.first
-      handle = page ? parse(page.uri) : nil
+      twitter_handle = page ? parse(page.uri) : nil
+      developer.update(twitter_handle: twitter_handle)
     rescue StandardError => e
       Rails.logger.error("ERROR RUNNING JOB: #{e}")
     ensure
-      Pusher.trigger('twitter_handles', 'result', { name: name, twitter: handle })
+      Pusher.trigger('twitter_handles', 'result', { name: name, twitter_handle: twitter_handle })
     end
   end
 
