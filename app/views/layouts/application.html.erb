@@ -9,6 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar container blue-background">
+    <h1 class="brand">DevExperts</h1>
+    <p>Look up the best developers by StackOverflow prowess and find their Twitter.</p>
+    <form id="search" action="/search" method="GET">
+      <input type="text" class="query" name="q" placeholder="keyword e.g. javascript" autofocus required>
+      <button type="submit"></button>
+    </form>
+  </nav>
 
 <%= yield %>
 

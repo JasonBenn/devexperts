@@ -1,0 +1,23 @@
+<% if @developers %>
+
+  <ul class="results">
+
+  <% @developers.each do |developer| %>
+    <li class="<%= developer['display_name'].parameterize %>">
+      <a href="<%= developer['link'] %>">
+        <img src="<%= developer['profile_image'] %>" alt="">
+      </a>
+      <h1><%= developer['display_name'] %></h1>
+      <p><strong>User's Relevance: <%= developer['score'] %></strong></p>
+      <p><strong>Total Reputation: <%= developer['reputation'] %></strong></p>
+      <p><strong>Twitter: <span class="twitter-handle"><%= display_twitter_handle developer['twitter_handle'] %></span></strong></p>
+    </li>
+  <% end %>
+
+  </ul>
+
+<% else %>
+
+  <h1>No Results</h1>
+
+<% end %>

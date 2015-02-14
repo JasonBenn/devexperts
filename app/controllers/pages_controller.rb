@@ -3,10 +3,12 @@ class PagesController < ApplicationController
   end
 
   def search
-    query = params['query']
-    results = StackexchangeApi::Tags.top_users(query)
-    developers = process_results(results, query)
-    render json: developers
+    query = params['q']
+
+    if query
+      results = StackexchangeApi::Tags.top_users(query)
+      @developers = process_results(results, query)
+    end
   end
 
   private

@@ -15,7 +15,7 @@ class FindTwitterHandleJob < ActiveJob::Base
     rescue StandardError => e
       Rails.logger.error("ERROR RUNNING JOB: #{e}")
     ensure
-      Pusher.trigger('twitter_handles', 'result', { name: name, twitter_handle: twitter_handle })
+      Pusher.trigger('twitter_handles', 'result', { name: name.parameterize, twitter_handle: twitter_handle })
     end
   end
 
